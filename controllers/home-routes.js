@@ -1,11 +1,14 @@
-// TODO: SEE ACT 16
-
 const router = require('express').Router();
-// TODO: ADD MODELS NEEDED
-const {} = require('../models');
+const { Post, Comment } = require('../models');
 
 // /dashboard
-
+router.get('/', async (req, res) => {
+    try {
+        const postData = await Post.findall({
+            
+        })
+    }
+})
 // /signup
 
 // GET /login
