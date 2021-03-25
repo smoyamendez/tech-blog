@@ -1,5 +1,3 @@
-// TODO: SEE ACT 16
-
 const router = require('express').Router();
 const { User } = require('../../models');
 
