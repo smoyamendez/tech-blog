@@ -2,13 +2,13 @@
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
-const exphbs = require('express-handlebars');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
 require('dotenv').config();
-
+const exphbs = require('express-handlebars');
 const routes = require('./controllers');
-const sequelize = require('./config/connection');
 const helpers = require('./utils/helpers');
+
+const sequelize = require('./config/connection');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 // SET UP EXPRESS APP
 const app = express();
@@ -20,8 +20,8 @@ const sess = {
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
-        db: sequelize,
-    }),
+        db: sequelize
+    })
 };
 
 app.use(session(sess));

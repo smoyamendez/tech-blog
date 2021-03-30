@@ -1,24 +1,56 @@
 const router = require('express').Router();
-const { Post, Comment } = require('../models');
+const { Post, Comment, User } = require('../models');
+const authGood = require('../utils/auth');
 
-// /dashboard
-router.get('/', async (req, res) => {
+router.get('/', authGood, async (req, res) => {
     try {
         const postData = await Post.findall({
-            
-        })
+            include: [
+                {
+                    model: Comment,
+                    attributes: ['text', 'comment-date'],
+                },
+            ],
+        });
+
+        const posts = JSON.parse(JSON.stringify(postData));
+        res.render('homepage', posts);
+    } catch (err) {
+        res.status(500).json(err);
     }
-})
-// /signup
-router.get('/signup', (req, res) => {
-    
-})
+});
+
+// router.get('/post/:id', async (req, res) => {
+//     try {
+//         const postData = await Post.findByPk(req.params.id, {
+//             include: [
+//                 {
+//                     model: Comment,
+//                     attributes: ['text', 'comment-date'],
+//                 },
+//             ],
+//         });
+
+//         const posts = JSON.parse(JSON.stringify(postData));
+//         // FIXME: 
+//         res.render('posts', { post, })
+//     }
+// })
+// // /signup
+// router.get('/signup', (req, res) => {
+
+// });
+
+// // /dashboard
+// router.get('/dashboard', (req, res) => {
+
+// });
 
 // GET /login
 router.get('/login', (req, res) => {
     // if user already logged in => redirect to dashboard
     if (req.session.logged_in) {
-        res.redirect('/dashboard');
+        res.redirect('/');
         return;
     }
 
