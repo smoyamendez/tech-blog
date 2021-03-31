@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Post } = require('../../models');
-const authGood = require('../utils/auth');
+const authGood = require('../../utils/auth');
 
 // CREATE NEW POST
 router.post('/', authGood, async (req, res) => {
@@ -9,7 +9,8 @@ router.post('/', authGood, async (req, res) => {
             ...req.body,
             user_id: req.session.user_id,
         });
-
+        res.status(200).json(newPost);
+    } catch (err) {
         res.status(400).json(err);
     }
 });

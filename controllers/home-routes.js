@@ -12,9 +12,11 @@ router.get('/', authGood, async (req, res) => {
                 },
             ],
         });
-
         const posts = JSON.parse(JSON.stringify(postData));
-        res.render('homepage', posts);
+        res.render('homepage', {
+            posts,
+            logged_in: req.session.logged_in
+        });
     } catch (err) {
         res.status(500).json(err);
     }
@@ -49,6 +51,7 @@ router.get('/', authGood, async (req, res) => {
 // GET /login
 router.get('/login', (req, res) => {
     // if user already logged in => redirect to dashboard
+    // console.log(req.session);
     if (req.session.logged_in) {
         res.redirect('/');
         return;
