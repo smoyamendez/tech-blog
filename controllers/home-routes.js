@@ -40,15 +40,22 @@ router.get('/', authGood, async (req, res) => {
 //         res.render('posts', { post, })
 //     }
 // })
-// // /signup
-// router.get('/signup', (req, res) => {
-
-// });
 
 // /dashboard
 // router.get('/dashboard', authGood, (req, res) => {
-
-// });
+    
+    // });
+    
+    // /signup
+    router.get('/signup', (req, res) => {
+        // if user already logged in => redirect to dashboard
+        if (req.session.loggedIn) {
+            res.redirect('/');
+            return;
+        }
+    
+        res.render('signup');
+    });
 
 // GET /login
 router.get('/login', (req, res) => {
@@ -60,6 +67,7 @@ router.get('/login', (req, res) => {
 
     res.render('login');
 });
+
 
 
 module.exports = router;

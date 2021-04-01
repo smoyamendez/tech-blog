@@ -35,5 +35,5 @@ router.delete('/:id', authGood, async (req, res) => {
 });
 
 // UPDATE POST
-
+router.put('')
 module.exports = router;
