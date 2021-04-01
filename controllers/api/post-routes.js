@@ -35,5 +35,19 @@ router.delete('/:id', authGood, async (req, res) => {
 });
 
 // UPDATE POST
-router.put('')
+router.put('/:id', async (req, res) => {
+    try {
+        const postData = await Post.update(
+            req.body, 
+            {
+                where: {
+                    id: req.params.id,
+                }
+            });
+            res.json(postData);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+});
+
 module.exports = router;
