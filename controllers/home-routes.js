@@ -7,7 +7,7 @@ router.get('/', authGood, async (req, res) => {
         const postData = await Post.findAll({
             include: [
                 {
-                    model: User, 
+                    model: User,
                     attributes: ["name"]
                 },
             ],
@@ -24,38 +24,40 @@ router.get('/', authGood, async (req, res) => {
 });
 
 // GET POST BY ID
-// router.get('/post/:id', async (req, res) => {
-//     try {
-//         const postData = await Post.findByPk(req.params.id, {
-//             include: [
-//                 {
-//                     model: Comment,
-//                     attributes: ['text', 'comment-date'],
-//                 },
-//             ],
-//         });
+router.get('/post/:id', async (req, res) => {
+    try {
+        const postData = await Post.findOne(
+            {
+                where: { id: res.params.id },
+                include: [
+                    {
+                        model: User,
+                        attributes: ["name"]
+                    }
+                ]
+            });
 
-//         const posts = JSON.parse(JSON.stringify(postData));
-//         // FIXME: 
-//         res.render('posts', { post, })
-//     }
-// })
+        const posts = JSON.parse(JSON.stringify(postData));
+        // FIXME: 
+        res.render('posts', { post, })
+    }
+})
 
 // /dashboard
 // router.get('/dashboard', authGood, (req, res) => {
-    
-    // });
-    
-    // /signup
-    router.get('/signup', (req, res) => {
-        // if user already logged in => redirect to dashboard
-        if (req.session.loggedIn) {
-            res.redirect('/');
-            return;
-        }
-    
-        res.render('signup');
-    });
+
+// });
+
+// /signup
+router.get('/signup', (req, res) => {
+    // if user already logged in => redirect to dashboard
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+
+    res.render('signup');
+});
 
 // GET /login
 router.get('/login', (req, res) => {
