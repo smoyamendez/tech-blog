@@ -65,6 +65,8 @@ router.post('/logout', (req, res) => {
     // destroys session when user logs out
     if (req.session.loggedIn) {
         req.session.destroy(() => {
+            req.logout();
+            res.redirect('/login');
             res.status(204).end();
         });
     } else {

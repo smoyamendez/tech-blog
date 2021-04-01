@@ -34,4 +34,6 @@ router.delete('/:id', authGood, async (req, res) => {
     }
 });
 
+// UPDATE POST
+
 module.exports = router;
