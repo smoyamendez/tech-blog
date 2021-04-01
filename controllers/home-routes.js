@@ -50,13 +50,14 @@ router.get('/post/:id', authGood, async (req, res) => {
 });
 
 // /dashboard
-router.get('/dashboard', authGood, (req, res) => {
+router.get('/dashboard', authGood, async (req, res) => {
     try {
         const dashboardData = await User.findByPk(req.session.user_id, {
-            include: [{ model: Blogs }]
+            include: [{ model: Post }]
         });
         const dashboard = JSON.parse(JSON.stringify(dashboardData));
-        restore.render('dashboard', {
+        console.log(dashboard);
+        res.render('dashboard', {
             dashboard,
             loggedIn: req.session.loggedIn
         });
