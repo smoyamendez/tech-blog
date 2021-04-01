@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Post, Comment, User } = require('../models');
+const { restore } = require('../models/user');
 const authGood = require('../utils/auth');
 
 router.get('/', authGood, async (req, res) => {
@@ -24,7 +25,7 @@ router.get('/', authGood, async (req, res) => {
 });
 
 // GET POST BY ID
-router.get('/post/:id', async (req, res) => {
+router.get('/post/:id', authGood, async (req, res) => {
     try {
         const postData = await Post.findOne(
             {
@@ -33,20 +34,48 @@ router.get('/post/:id', async (req, res) => {
                     {
                         model: User,
                         attributes: ["name"]
+                    },
+                    {
+                        model: Comment
                     }
                 ]
             });
 
         const posts = JSON.parse(JSON.stringify(postData));
-        // FIXME: 
-        res.render('posts', { post, })
+        res.render('post', { posts, loggedIn: req.session.loggedIn });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
     }
-})
+});
 
 // /dashboard
-// router.get('/dashboard', authGood, (req, res) => {
+router.get('/dashboard', authGood, (req, res) => {
+    try {
+        const dashboardData = await User.findByPk(req.session.user_id, {
+            include: [{ model: Blogs }]
+        });
+        const dashboard = JSON.parse(JSON.stringify(dashboardData));
+        restore.render('dashboard', {
+            dashboard,
+            loggedIn: req.session.loggedIn
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
 
-// });
+router.get('/dashboard/new' , authGood, (req, res) => {
+    try {
+        res.render('newPost', {
+            loggedIn: req.session.loggedIn
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
 
 // /signup
 router.get('/signup', (req, res) => {
