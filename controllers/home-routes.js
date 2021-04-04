@@ -67,7 +67,7 @@ router.get('/dashboard', authGood, async (req, res) => {
     }
 });
 
-router.get('/dashboard/new' , authGood, (req, res) => {
+router.get('/dashboard/new', authGood, (req, res) => {
     try {
         res.render('newPost', {
             loggedIn: req.session.loggedIn

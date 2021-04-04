@@ -1,28 +1,28 @@
 const newPostHandler = async (event) => {
-    await event.preventDefault();
+    event.preventDefault();
 
     // Get values from create post form
-    const postTitle = document.querySelector('post-title').value.trim();;
-    const postContent = document.querySelector('post-content').value.trim();;
+    const postTitle = document.querySelector('#post-title').value.trim();
+    const postContent = document.querySelector('#post-content').value.trim();
+    console.log(postTitle);
+    console.log(postContent);
 
     if (postTitle && postContent) {
-        const response = await fetch('/api/posts', {
+        const response = await fetch('/api/posts/', {
             method: 'POST',
-            body: JSON.stringify({ postTitle, postContent }),
+            body: JSON.stringify({"title": postTitle, "post_content": postContent }),
             headers: { 'Content-Type': 'application/json' },
         });
 
         if (response.ok) {
-            // Redirects to homepage if succesful
-            document.location.replace('/');
+            // Redirects to dashboard if succesful
+            document.location.replace('/dashboard');
         } else {
             alert(response.statusText);
         }
     }
 };
 
-document.querySelector('#newPost').addEventListener('click', (event) => {
-    document.location.replace('/dashboard/new')
-});
+
 document.querySelector('#post-form').addEventListener('submit', newPostHandler);
 

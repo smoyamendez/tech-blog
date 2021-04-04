@@ -4,11 +4,14 @@ const authGood = require('../../utils/auth');
 
 // CREATE NEW POST
 router.post('/', authGood, async (req, res) => {
+    console.log(req.session.user_id);
     try {
         const newPost = await Post.create({
-            ...req.body,
+            title: req.body.title,
+            post_content: req.body.post_content,
             user_id: req.session.user_id,
         });
+        console.log(req.body);
         res.status(200).json(newPost);
     } catch (err) {
         res.status(400).json(err);
