@@ -78,6 +78,20 @@ router.get('/dashboard/new', authGood, (req, res) => {
     }
 });
 
+router.get('/dashboard/edit/:id', authGood, async (req, res) => {
+    try {
+        const dashboardData = await Post.findByPk(req.params.id);
+        const posts = JSON.parse(JSON.stringify(dashboardData));
+        res.render('edit', {
+            posts,
+            loggedIn: req.session.loggedIn
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
 // /signup
 router.get('/signup', (req, res) => {
     // if user already logged in => redirect to dashboard

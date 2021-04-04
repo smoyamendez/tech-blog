@@ -14,9 +14,6 @@
 
 <div class="container">
   {{#each posts}}
-  {{user.name}}
-  {{format_date createdAt}}
-  {{title}}
-  {{post_content}}
+    {{>post}}
   {{/each}}
 </div>

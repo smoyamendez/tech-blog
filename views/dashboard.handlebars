@@ -17,7 +17,7 @@
         <button id='newPost' type="button" class="btn btn-primary col-3">New Post</button>
     </div>
     {{#each dashboard.posts}}
-    <a class="btn btn-primary col-12" href="#" role="button">{{title}} {{format_date createdAt}}</a>
+    <a class="btn btn-primary col-12 text-start" href="/dashboard/edit/{{id}}" role="button">{{title}} {{format_date createdAt}}</a>
     {{/each}}
 </div>
 

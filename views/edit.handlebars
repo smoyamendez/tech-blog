@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <form id="post-edit-form" data-id= {{posts.id}} class="col-8">
+            <h2>Edit Post</h2>
+            <div class="mb-3">
+                <label for="post-title" class="form-label">Title</label>
+                <input type="text" value="{{posts.title}}" class="form-control" id="post-title-update">
+            </div>
+            <div class="mb-3">
+                <label for="post-content" class="form-label">Content</label>
+                <input class="form-control" value="{{posts.post_content}}" id="post-content-update">
+            </div>
+            <button type="submit" id="updateBtn" class="btn btn-primary">Update Post</button>
+            <button type="submit" id="deleteBtn" class="btn btn-danger">Delete Post</button>
+        </form>
+    </div>
+</div>
+
+<script src="/js/editPost.js"></script>

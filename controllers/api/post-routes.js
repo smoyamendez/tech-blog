@@ -23,7 +23,7 @@ router.delete('/:id', authGood, async (req, res) => {
     try {
         const postData = await Post.destroy({
             where: {
-                id: req.params.id, //MAY NEED TO ADD MODEL STUFF
+                id: req.params.id,
                 user_id: req.session.user_id,
             },
         });
