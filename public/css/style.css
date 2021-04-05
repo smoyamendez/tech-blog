@@ -1,0 +1,47 @@
+.nav-container {
+    margin-bottom: 20px;
+}
+
+/* HOMEPAGE STYLE */
+
+.homepage-posts {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    border-bottom: 2px solid black;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.card-body {
+    background-color: rgb(232, 229, 229);
+}
+
+.card-text {
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* DASHBOARD STYLES */
+
+.dashboard-title {
+    font-weight: bold;
+    /* font-size: 24px; */
+}
+
+.dashboard-date {
+    color: rgb(145, 141, 141);
+    /* font-size: 16px; */
+}
+   
+.dashboard-btn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#newPost {
+    margin-bottom: 20px;
+}

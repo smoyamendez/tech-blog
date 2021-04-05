@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container nav-container">
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/">HOME</a>
@@ -14,10 +14,13 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <button id='newPost' type="button" class="btn btn-primary col-3">New Post</button>
+        <button id='newPost' type="button" class="btn btn-danger col-3">New Post</button>
     </div>
+    <h3>
+        Your Posts:
+    </h3>
     {{#each dashboard.posts}}
-    <a class="btn btn-primary col-12 text-start" href="/dashboard/edit/{{id}}" role="button">{{title}} {{format_date createdAt}}</a>
+    <a class="btn btn-primary col-12 text-start dashboard-btn" href="/dashboard/edit/{{id}}" role="button"><span class="dashboard-title">{{title}}</span> | <span class="dashboard-date">{{format_date createdAt}}</span></a>
     {{/each}}
 </div>
 
