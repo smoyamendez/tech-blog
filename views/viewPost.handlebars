@@ -12,6 +12,29 @@
     </ul>
 </div>
 
+<div class="container">
+  <div class="card-body">
+    <h5 class="card-title">{{posts.title}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Posted by: {{posts.user.name}} on {{format_date posts.createdAt}}</h6>
+    <p class="card-text">  {{posts.post_content}}</p>
+  </div>
 
+  {{#each posts.comment as |comment|}}
+    <p class="card-text">  {{comment.text}}</p>
+  {{/each}}
+</div>
 
-<script src="/js/viewPost.js"></script>
+<div class="container">
+    <div class="row justify-content-center">
+        <form id="comment-form" class="col-8" data-id='{{posts.id}}'>
+            <h2>Add a comment</h2>
+            <div class="mb-3">
+                {{!-- <label for="comment-content" class="form-label">Content</label> --}}
+                <textarea class="form-control" id="comment-{{posts.id}}" rows="2"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Post</button>
+        </form>
+    </div>
+</div>
+
+<script src="/js/newComment.js"></script>
