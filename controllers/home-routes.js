@@ -42,7 +42,7 @@ router.get('/post/:id', authGood, async (req, res) => {
             });
 
         const posts = JSON.parse(JSON.stringify(postData));
-        res.render('post', { posts, loggedIn: req.session.loggedIn });
+        res.render('viewPost', { posts, loggedIn: req.session.loggedIn });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
