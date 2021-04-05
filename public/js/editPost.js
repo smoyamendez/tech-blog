@@ -2,9 +2,10 @@
 const updatePostHandler = async (event) => {
     event.preventDefault();
 
-    const postTitle = document.querySelector('#post-title').value.trim();
-    const postContent = document.querySelector('#post-content').value.trim();
-
+    const postTitle = document.querySelector('#post-title-update').value.trim();
+    const postContent = document.querySelector('#post-content-update').value.trim();
+    console.log(postTitle);
+    console.log(postContent);
     if (postTitle && postContent) {
         const id = event.target.getAttribute('data-id');
         const response = await fetch(`/api/posts/${id}`, {
@@ -15,7 +16,7 @@ const updatePostHandler = async (event) => {
 
         if (response.ok) {
             // Redirects to dashboard if succesful
-            document.location.replace(`/dashboard`);
+            document.location.replace('/dashboard');
         } else {
             alert(response.statusText);
         }
@@ -24,8 +25,10 @@ const updatePostHandler = async (event) => {
 
 const deletePostHandler = async (event) => {
     event.preventDefault();
+    const editForm = document.querySelector('#post-edit-form');
+    const id = editForm.getAttribute('data-id');
     const response = await fetch(`/api/posts/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
     })
 
     if (response.ok) {
@@ -35,6 +38,6 @@ const deletePostHandler = async (event) => {
     }
 }
 
-document.querySelector('#updateBtn').addEventListener('submit', updatePostHandler);
+document.querySelector('#post-edit-form').addEventListener('submit', updatePostHandler);
 
-document.querySelector('#deleteBtn').addEventListener('submit', deletePostHandler);
+document.querySelector('#deleteBtn').addEventListener('click', deletePostHandler);

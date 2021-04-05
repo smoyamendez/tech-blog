@@ -1,4 +1,18 @@
 <div class="container">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/">HOME</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/dashboard">DASHBOARD</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link logout" href="/logout">LOGOUT</a>
+        </li>
+    </ul>
+</div>
+
+<div class="container">
     <div class="row justify-content-center">
         <form id="post-edit-form" data-id= {{posts.id}} class="col-8">
             <h2>Edit Post</h2>
@@ -11,7 +25,7 @@
                 <input class="form-control" value="{{posts.post_content}}" id="post-content-update">
             </div>
             <button type="submit" id="updateBtn" class="btn btn-primary">Update Post</button>
-            <button type="submit" id="deleteBtn" class="btn btn-danger">Delete Post</button>
+            <button type="click" id="deleteBtn" class="btn btn-danger">Delete Post</button>
         </form>
     </div>
 </div>

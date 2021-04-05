@@ -48,6 +48,7 @@ router.put('/:id', async (req, res) => {
                 }
             });
             res.json(postData);
+            console.log(postData);
     } catch (err) {
         res.status(400).json(err);
     }
